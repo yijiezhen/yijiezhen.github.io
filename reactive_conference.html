@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Reactive Conference</title>
+
+</head>
+<body>
+<h1>Reactive Conference</h1>
+
+<p>Last two days, Kenji and I attended the refactive conference <a href="http://reactconf.com/">http://reactconf.com/</a> hosted in San Francisco. <del>It covered lots of concepts and practical suggestions.</del> Wanted to share the session details and some thoughts in case anyone is interested.</p>
+
+<p>For those who know little about Reactive Programming, below are some good references to begin with:</p>
+
+<ul>
+<li><a href="http://www.reactivemanifesto.org/">Reactive Manifesto</a></li>
+<li><a href="https://medium.com/reactive-programming/what-is-reactive-programming-bc9fa7f4a7fc">What is Reactive Programming</a></li>
+</ul>
+
+
+<h3>Day 1</h3>
+
+<p>There are 6 sessions in day 1.</p>
+
+<h4>Subjectively consistent</h4>
+
+<p>The first session is from <strong>Pat Helland</strong>, who is a microsoft veteran and works for salesforce now.</p>
+
+<p>So what is <strong> subjectively consistent </strong>? As Pat put it, it is .In the talk, he talks about ACID 2.0 and . One of the thing that I think is very interesting is his idea about. Pat's ideas were actually rooted back in 80s.
+In this <a href="http://www-db.cs.wisc.edu/cidr/cidr2009/Paper_133.pdf">paper</a>, it mentions that to deal with consistency problem in a distrbution environment, there are basically two design options:</p>
+
+<p>1) You can synchronously checkpoint and incur the latency, or</p>
+
+<p>2) You can asynchronously checkpoint, save the latency, and experience modified application semantics</p>
+
+<p>As we can see, it is a choice between <strong>availablity</strong> and <strong>consistency</strong>.</p>
+
+<h4>Responding in a Timely Manner</h4>
+
+<p>The second session is from <strong>Martin Thompson</strong> who was the co-founder and CTO of LMAX, a FX trading platform.</p>
+
+<p>In this talk, Martin Thompson</p>
+
+<p><a href="https://www.youtube.com/watch?v=4dfk3ucthN8&amp;list=PLSD48HvrE7-Z1stQ1vIIBumB0wK0s8llY&amp;index=3">video</a></p>
+
+<h4>Resilient by Design</h4>
+
+<p>The third session is from <strong>Ben Christensen</strong> from Netfix.</p>
+
+<p>In the talk, Ben talks about why Resilient Design is required in Netflix and how <a href="https://github.com/Netflix/Hystrix">Hystrix</a> tries to resolve the issue. Fault Tolerance is not <strong><em> exception handling </em></strong>, it is daily life.</p>
+
+<h4>Elastic Scaling</h4>
+
+<p>The fourth session is from Benjamin Hindman, the co-creator of <a href="http://mesos.apache.org/">Apache Mesos</a> and worked for twitter.</p>
+
+<p>As the creator of Apache Mesos, he talks about how to provision and unprovision resource to make your application scale up.</p>
+
+<h4>To Be Message-Driven</h4>
+
+<p>The fifth session is from <strong>Todd Montomery</strong>.</p>
+
+<p>In the <a href="http://www.slideshare.net/toddleemontgomery/reactsf-2014messagedriven">presentation</a>, he talks about</p>
+
+<h4>Understanding Latency</h4>
+
+<p>The last session in Day 1 is from Gil Tene, who is the founder of Azul Systems.
+In the talk,</p>
+
+<h3>Day 2</h3>
+
+<h4>Life Beyond the Illusion of Present</h4>
+
+<p>The first session in Day 2 is from Jonas Boner, who is the CTO and co-founder of typesafe and was creator of akka actor.
+He talks about the time as first class and mentions that <strong>relying</strong> on timestamp ia bad idea. CRUD is dead. No UD anymore only create and read.</p>
+
+<h4>Event Processing: Making sense of the fire-hose in real-time</h4>
+
+<p>The second session is from Andy Piper.</p>
+
+<h4>Reactive, Event Driven User Interfaces</h4>
+
+<p>The third one is quite interesting.</p>
+
+<h4>Error handling in Reactive Systems.</h4>
+
+<p>Error Handling as the first class
+In the <a href="http://www.slideshare.net/deanwampler/error-handling-in-reactive-systems">presentation</a>,</p>
+
+<h4>Reactive Storage</h4>
+
+<h4>Closing Keynote - Who Builds a Skyscraper without Drawing Blueprints?</h4>
+
+<p>This closing session is from <strong>Leslie Lamport</strong>, who is famous for <strong> Lamport clock</strong>. He talks about using <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html">TLA+</a> to verify the correctness of your program after the design and <strong> before </strong> writing code. Is <strong> formal method </strong> too academic and costly for real world systems? It may be not, check this <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/formal-methods-amazon.pdf">article</a> from amazon AWS team about how they use TLA+ for their real production systems.</p>
+
+<p>What</p>
+</body>
+</html>
