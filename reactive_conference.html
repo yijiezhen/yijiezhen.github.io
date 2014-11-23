@@ -158,7 +158,7 @@ sup {
 <body>
 <h1>Reactive Conference</h1>
 
-<p>Last two days, Kenji and I attended the refactive conference <a href="http://reactconf.com/">http://reactconf.com/</a> hosted in San Francisco. <del>It covered lots of concepts and practical suggestions.</del> Wanted to share the session details and some thoughts in case anyone is interested.</p>
+<p>I attended the refactive conference <a href="http://reactconf.com/">http://reactconf.com/</a> from Nov 18th to Nov 19th, 2014 in San Francisco. Wanted to share the session details and some thoughts in case anyone is interested.</p>
 
 <p>For those who know little about Reactive Programming, below are some good references to begin with:</p>
 
@@ -170,13 +170,13 @@ sup {
 
 <h3>Day 1</h3>
 
-<p>There are 6 sessions in day 1.</p>
+<p>There are 6 sessions in day 1 (Nov 18th).</p>
 
 <h4>Subjectively consistent</h4>
 
 <p>The first session is from <strong>Pat Helland</strong>, who is a microsoft veteran and works for salesforce now.</p>
 
-<p>So what is <strong> subjectively consistent </strong>? As Pat put it, it is .In the talk, he talks about ACID 2.0 and . One of the thing that I think is very interesting is his idea about. Pat's ideas were actually rooted back in 80s.
+<p>Pat Helland is the person who came up with the concept of ACID 2.0 (A for Associative, C for Commutative, I for Idempotent and D for Distributed)). Pat's ideas were actually rooted back in 80s.
 In this <a href="http://www-db.cs.wisc.edu/cidr/cidr2009/Paper_133.pdf">paper</a>, it mentions that to deal with consistency problem in a distrbution environment, there are basically two design options:</p>
 
 <p>1) You can synchronously checkpoint and incur the latency, or</p>
@@ -189,39 +189,42 @@ In this <a href="http://www-db.cs.wisc.edu/cidr/cidr2009/Paper_133.pdf">paper</a
 
 <p>The second session is from <strong>Martin Thompson</strong> who was the co-founder and CTO of LMAX, a FX trading platform.</p>
 
-<p>In this talk, Martin Thompson</p>
-
-<p><a href="https://www.youtube.com/watch?v=4dfk3ucthN8&amp;list=PLSD48HvrE7-Z1stQ1vIIBumB0wK0s8llY&amp;index=3">video</a></p>
+<p>In this <a href="https://www.youtube.com/watch?v=4dfk3ucthN8&amp;list=PLSD48HvrE7-Z1stQ1vIIBumB0wK0s8llY&amp;index=3">presentation</a>, Martin Thompson talks about how to test/measure response time that we should use percentils to measure response time instead of averages. After that he talks about some theory like <a href="http://en.wikipedia.org/wiki/Queueing_theory">queuing theory</a>, <a href="http://en.wikipedia.org/wiki/Amdahl's_law">Amdahl's Law</a>, <a href="http://www.perfdynamics.com/Manifesto/USLscalability.html">Universal Scalability Law</a>. He then goes through a practical example. In the end, he mentions several techniques like <a href="http://mechanical-sympathy.blogspot.com/2011/10/smart-batching.html">Smart batching</a>, <a href="http://mechanical-sympathy.blogspot.com/2012/05/apply-back-pressure-when-overloaded.html">Applying backpressue</a>, <a href="http://en.wikipedia.org/wiki/Non-blocking_algorithm">non blocking design</a>, <a href="http://mechanical-sympathy.blogspot.com/2013/08/lock-based-vs-lock-free-concurrent.html">lock free concurrent algorithm</a> and Observable State Machines.</p>
 
 <h4>Resilient by Design</h4>
 
 <p>The third session is from <strong>Ben Christensen</strong> from Netfix.</p>
 
-<p>In the talk, Ben talks about why Resilient Design is required in Netflix and how <a href="https://github.com/Netflix/Hystrix">Hystrix</a> tries to resolve the issue. Fault Tolerance is not <strong><em> exception handling </em></strong>, it is daily life.</p>
+<p>In the talk, Ben talks about why Resilient Design is required in Netflix and how <a href="https://github.com/Netflix/Hystrix">Hystrix</a> tries to resolve the issue. Fault Tolerance is not <strong><em> exception handling </em></strong>, it is daily life. A disaster in a system may not from a critical error but from the effect of many small errors joining together. There should be a systematic way to avoid that.</p>
 
 <h4>Elastic Scaling</h4>
 
 <p>The fourth session is from Benjamin Hindman, the co-creator of <a href="http://mesos.apache.org/">Apache Mesos</a> and worked for twitter.</p>
 
-<p>As the creator of Apache Mesos, he talks about how to provision and unprovision resource to make your application scale up.</p>
+<p>As the creator of Apache Mesos, he talks about how to dynamically provision and unprovision resources to make your application scale. Apache Mesos abstracts the computer resources such as cpu, memory, storage etc to make elastic scaling more easier and more effective.</p>
 
 <h4>To Be Message-Driven</h4>
 
 <p>The fifth session is from <strong>Todd Montomery</strong>.</p>
 
-<p>In the <a href="http://www.slideshare.net/toddleemontgomery/reactsf-2014messagedriven">presentation</a>, he talks about</p>
+<p>In the <a href="http://www.slideshare.net/toddleemontgomery/reactsf-2014messagedriven">presentation</a>, he talks about why message driven is a key part of reactive programming. With message driven, first, the boundary between components is harder to couple and conflat, second, the asynchronous processing means you can do stuff while waiting. He also mentions the ordering is an illusion. Thus system should be designed to be idempotent so there is little ordering or state requirement.</p>
 
 <h4>Understanding Latency</h4>
 
-<p>The last session in Day 1 is from Gil Tene, who is the founder of Azul Systems.
-In the talk,</p>
+<p>The last session in Day 1 is from <strong>Gil Tene</strong>, who is the founder of Azul Systems.</p>
+
+<p>In the talk, he discussed the some of key lessons and some of the tools that can help us to understand how the system performs, like <a href="https://github.com/HdrHistogram/HdrHistogram">HdrHistogram</a> and <a href="https://github.com/giltene/jHiccup">jHiccup</a>.
+Here is a similar Qcon <a href="http://www.infoq.com/presentations/latency-lessons-tools">talk</a>.</p>
 
 <h3>Day 2</h3>
 
+<p>There are another 6 sessions in day 2 (Nov 19).</p>
+
 <h4>Life Beyond the Illusion of Present</h4>
 
-<p>The first session in Day 2 is from Jonas Boner, who is the CTO and co-founder of typesafe and was creator of akka actor.
-He talks about the time as first class and mentions that <strong>relying</strong> on timestamp ia bad idea. CRUD is dead. No UD anymore only create and read.</p>
+<p>The first session in Day 2 is from Jonas Boner, who is the CTO and co-founder of typesafe and was creator of akka actor.</p>
+
+<p>He talks about use time as first class memeber in programming and mentions that <strong>relying</strong> on timestamp in your application logic is a bad idea. CRUD is dead. There should be no update or delete but only create and read.</p>
 
 <h4>Event Processing: Making sense of the fire-hose in real-time</h4>
 
@@ -231,7 +234,10 @@ He talks about the time as first class and mentions that <strong>relying</strong
 
 <h4>Reactive, Event Driven User Interfaces</h4>
 
-<p>The third one is quite interesting.</p>
+<p>The third one is from <strong>Lee Campbell</strong> and <strong>Matt Barrett</strong>.</p>
+
+<p>In the session, they demostrated a currency trading application using reactive principles. They discussed the four challenges for UI applications: responsive, resilient, latency and consistent and the techniques to overcome these challenges, like embracing non blocking, using asynchrony, everything is a stream, favoring functional data models, etc.
+Here is the <a href="http://weareadaptive.com/blog/2014/04/12/reactconf-2014-reactive-ui/">blog</a>. They also open sourced the application they developed in <a href="https://github.com/AdaptiveConsulting/ReactiveTrader">github</a>.</p>
 
 <h4>Error handling in Reactive Systems.</h4>
 
@@ -241,10 +247,12 @@ He talks about the time as first class and mentions that <strong>relying</strong
 
 <h4>Reactive Storage</h4>
 
+<p>The fifth session is from <strong> Andrew Stewart </strong> .</p>
+
+<p>In the talk, he talks about different strategies for different data characteristics, like early life, post-mortem, historic and difficult. He mentions the usage of <a href="https://github.com/google/leveldb">leveldb</a>. The San Francisco conference video hasn't been uploaded yet but here is the <a href="https://www.youtube.com/watch?v=LJkW4Clipd8">video</a> from London conference if you want to take a look.</p>
+
 <h4>Closing Keynote - Who Builds a Skyscraper without Drawing Blueprints?</h4>
 
-<p>This closing session is from <strong>Leslie Lamport</strong>, who is famous for <strong> Lamport clock</strong>. He talks about using <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html">TLA+</a> to verify the correctness of your program after the design and <strong> before </strong> writing code. Is <strong> formal method </strong> too academic and costly for real world systems? It may be not, check this <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/formal-methods-amazon.pdf">article</a> from amazon AWS team about how they use TLA+ for their real production systems.</p>
-
-<p>What</p>
+<p>The closing session is from <strong>Leslie Lamport</strong>, who is famous for <strong> Lamport clock</strong>. He talked about using <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html">TLA+</a> to verify the correctness of your program after the design and <strong> before </strong> writing code. Is <strong> formal method </strong> too academic and costly for real world systems? It may be not, check this <a href="http://research.microsoft.com/en-us/um/people/lamport/tla/formal-methods-amazon.pdf">article</a> from amazon AWS team on how they use TLA+ for their real production systems, like Dynamodb.</p>
 </body>
 </html>
