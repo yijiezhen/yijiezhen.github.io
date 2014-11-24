@@ -158,7 +158,7 @@ sup {
 <body>
 <h1>Reactive Conference</h1>
 
-<p>Last week, Kenji and I attended the refactive conference <a href="http://reactconf.com/">http://reactconf.com/</a> in San Francisco. Here are the session details in case anyone is interested.</p>
+<p>Last week, Kenji and I attended the reactive conference <a href="http://reactconf.com/">http://reactconf.com/</a> in San Francisco. Here are the session details in case anyone is interested.</p>
 
 <p>For those who knows little about Reactive Programming, below are some good references to begin with:</p>
 
@@ -174,7 +174,7 @@ sup {
 
 <h4>Subjectively consistent</h4>
 
-<p>The first session is from <strong>Pat Helland</strong>, who is a microsoft veteran and is now working for salesforce.</p>
+<p>The first session is from <strong>Pat Helland</strong>, a microsoft veteran and is now working for salesforce.</p>
 
 <p>In the session, he talks about what is subjectively consistent and the concept of ACID 2.0 (A for Associative, C for Commutative, I for Idempotent and D for Distributed)).
 I was not able to find any ppt or video for the talk. But you can read this <a href="http://www-db.cs.wisc.edu/cidr/cidr2009/Paper_133.pdf">paper</a> to get some idea.</p>
@@ -195,13 +195,13 @@ I was not able to find any ppt or video for the talk. But you can read this <a h
 
 <p>The fourth session is from Benjamin Hindman, the co-creator of <a href="http://mesos.apache.org/">Apache Mesos</a> and worked for twitter.</p>
 
-<p>As the creator of Apache Mesos, he talks about how to dynamically provision and unprovision resources to make your application scale. Apache Mesos abstracts the computer resources such as cpu, memory, storage etc to make elastic scaling easier and more effective.</p>
+<p>As the creator of Apache Mesos, he talks about how to dynamically provision and un-provision resources to make your application scale. Apache Mesos abstracts the computer resources such as cpu, memory, storage etc to make elastic scaling easier and more effective.</p>
 
 <h4>To Be Message-Driven</h4>
 
 <p>The fifth session is from <strong>Todd Montomery</strong>.</p>
 
-<p>In the <a href="http://www.slideshare.net/toddleemontgomery/reactsf-2014messagedriven">presentation</a>, he talks about why message driven is a key part of reactive programming. With message driven, first, the boundary between components is harder to couple and conflat, second, the asynchronous processing means you can do stuff while waiting. He also mentions the ordering is an illusion. Thus system should be designed to be idempotent so there is little ordering or state requirement.</p>
+<p>In the <a href="http://www.slideshare.net/toddleemontgomery/reactsf-2014messagedriven">presentation</a>, he talks about why message driven is a key part of reactive programming. With message driven, first, the boundary between components is harder to couple and conflate, second, the asynchronous processing means you can do stuff while waiting. He also mentions the ordering is an illusion. Thus system should be designed to be idempotent so there is little ordering or state requirement.</p>
 
 <h4>Understanding Latency</h4>
 
@@ -224,20 +224,20 @@ Here is a similar Qcon <a href="http://www.infoq.com/presentations/latency-lesso
 
 <p>The second session is from <strong> Andy Piper </strong>.</p>
 
-<p>In the <a href="http://www.slideshare.net/AndyPiper1/reactconf-2014-event-stream-processing">Presentation</a>, Andy Piper talks about Event Stream Processing (ESP). He tries to answer the following questions: what is ESP? Why it is needed? What does it look like? And the design considerations like performance (needs to be fast), resiliency, scalablity and distribution. In the end, he mentions fast data architecture and several technologies like Apache Storm, Spark, Kafaka, etc.</p>
+<p>In the <a href="http://www.slideshare.net/AndyPiper1/reactconf-2014-event-stream-processing">Presentation</a>, Andy Piper talks about Event Stream Processing (ESP). He tries to answer the following questions: what is ESP? Why it is needed? What does it look like? And the design considerations like performance (needs to be fast), resiliency, scalability and distribution. In the end, he mentions fast data architecture and several technologies like Apache Storm, Spark, Kafaka, etc.</p>
 
 <h4>Reactive, Event Driven User Interfaces</h4>
 
 <p>The third one is from <strong>Lee Campbell</strong> and <strong>Matt Barrett</strong>.</p>
 
-<p>In the session, they demostrated a currency trading application using reactive principles. They discussed the four challenges for UI applications: responsive, resilient, latency and consistent and the techniques to overcome these challenges, like embracing non blocking, using asynchrony, everything is a stream, favoring functional data models, etc.
+<p>In the session, they demonstrated a currency trading application using reactive principles. They discussed the four challenges for UI applications: responsive, resilient, latency and consistent and the techniques to overcome these challenges, like embracing non blocking, using asynchrony, everything is a stream, favoring functional data models, etc.
 Here is the <a href="http://weareadaptive.com/blog/2014/04/12/reactconf-2014-reactive-ui/">blog</a>. They also open sourced the application they developed in <a href="https://github.com/AdaptiveConsulting/ReactiveTrader">github</a>.</p>
 
 <h4>Error handling in Reactive Systems.</h4>
 
 <p>This fourth session is from <strong> Dean Wampler </strong>.</p>
 
-<p>In this <a href="http://www.slideshare.net/deanwampler/error-handling-in-reactive-systems">presentation</a>, Dean Wampler thinks "Failure" should be a first class member. He mentions a number of ways to do failure handling, like the most common failure handling mixed with domain logic to actor's "let it crash" way. He also compares CSP (communicating sequential process, examples like Go &amp; Clojure's core.async) and Actor and concludes that they can implement each other although they appear different. In the end, he tries to response some critisms on actor.</p>
+<p>In this <a href="http://www.slideshare.net/deanwampler/error-handling-in-reactive-systems">presentation</a>, Dean Wampler thinks "Failure" should be a first class member. He mentions a number of ways to do failure handling, like the most common failure handling mixed with domain logic to actor's "let it crash" way. He also compares CSP (communicating sequential process, examples like Go &amp; Clojure's core.async) and Actor and concludes that they can implement each other although they appear different. In the end, he tries to response some criticisms on actor.</p>
 
 <h4>Reactive Storage</h4>
 
