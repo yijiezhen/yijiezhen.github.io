@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Scala 2.9.3 to 2.10.4 upgrade</title>
+
+</head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57383440-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<body>
+<h2>Scala 2.9.3 to 2.10.4 upgrade</h2>
+
+<p><em>Added: 09/12/2014 Updated:09/12/2014</em></p>
+
+<hr />
+
+<p>I recently did an upgrade of our code base from scala 2.9.3 to 2.10.4. It is definitely not smooth because scala is <del>infamous</del> for its backward compatibility and we have hundreds of libraries internally developed or from externally. But it is not impossible as well. Here I will list the issues I met and the solutions I found during the <strong>journey</strong>.</p>
+
+<h3>The goodness of 2.10</h3>
+
+<ul>
+<li>Value class: A class may extend AnyVal to behave like a struct type.</li>
+<li>Implicit class: The implicit modifier now applies to class definitions.</li>
+<li>String interpolation: You can do something like <code>"abc $str"</code> while str is a variable.</li>
+<li>Futures and promises.</li>
+<li>Akka actor is the default implementation for scala actor.</li>
+<li>...</li>
+</ul>
+
+
+<h3>Library updates</h3>
+
+<p>To upgrade scala, one needs to upgrade the libraries as scala is not backward compatible. Here are some notable differences between versions for some libraries.</p>
+
+<h5>ScalaTest</h5>
+
+<p>In my project, ScalaTest is upgraded from 1.9.1 to 2.2.2. Here are some changes that may be needed:</p>
+
+<ol>
+<li><code>FunSuite</code> is no longer a trait. If you want to mix in, use <code>FunSuiteLike</code> instead. This is also true to the <code>*Spec</code>, like <code>WordSpec/FlatSpec</code>. Use <code>WordSpecLike</code>, <code>FlatSpecLike</code> in case you need a trait.</li>
+<li>ScalaTest uses <a href="http://docs.scala-lang.org/overviews/macros/overview.html">macro</a> to implement def <code>assert(condition: Boolean, clue: Any)</code>, it no longer accepts named or default parameters. Compiler will complain if you write something like <code>assert(condition = true, clue = "should be true")</code>.</li>
+<li><code>before</code> and <code>after</code> is already used <code>org.scalactic.Explicitly</code>. You will not able to define a field or function named <code>before/after</code> with no paramters in your ScalaTest classes. There will be name conflicits.</li>
+<li><p>The <code>apply</code> method for <code>MatchResult</code> has been changed from</p>
+
+<pre><code>def apply(matches: Boolean, failureMessage: String, negatedFailureMessage: String): MatchResult
+</code></pre>
+
+<p>to</p>
+
+<pre><code>def apply(matches: Boolean, rawFailureMessage: String, rawNegatedFailureMessage : String) : MatchResult
+</code></pre></li>
+</ol>
+
+
+<h5>Lift</h5>
+
+<p>I upgraded Lift from 2.4 to 2.5.1. A few notable changes:</p>
+
+<ol>
+<li><p>The biggest change comes from the implementation for <code>#&gt;</code>, It introduces a new trait <code>CanBind</code> as an implicit parameter to <code>#&gt;</code>.
+<code>def #&gt;[T](it: =&gt; T)(implicit computer: CanBind[T]): CssSel</code> . There are two effects. First, if we have something like <code>a #&gt; b</code>,
+in 2.4, the b will be evaulated when the CssSel is defined. However, in 2.5.1, b will be evaluated when the CssSel is applied.  Second, the compiler now gets confused for following code. It thinks the <code>(in)</code> below is an implicit <code>CanBind</code>.</p>
+
+<pre><code>  def myAccountHref(in: NodeSeq): NodeSeq = ("a [href]" #&gt; myAccountUrl)(in)
+</code></pre></li>
+<li><p>An empty element in html template like <code>""&lt;div class=""abc""&gt;&lt;/div&gt;</code> will be transformed to <code>""&lt;div class=""abc""/&gt;</code>. <strong><em>Is there a way to configure that?</em></strong></p></li>
+</ol>
+
+
+<h5>Salat/Casbah</h5>
+
+<p><a href="https://github.com/novus/salat">Salat</a> is upgraded from 1.9.2 to 1.9.8.</p>
+
+<ol>
+<li>The behavior for inserting object with null value has been changed.
+If we have <code>MyObject(a: string = null, b: DateTime = null)</code>, in 1.9.2, in Mongo, we will not see a and b field. But with 1.9.8 we see them with null values.</li>
+</ol>
+
+
+<h3>Scala updates</h3>
+
+<h5>For comprehension bug</h5>
+
+<p>There was a bug introduced in 2.10 "for comprehension". In 2.9.3, below code:</p>
+
+<pre><code>val a: Either[String, Int] = Right(5)
+for {aa: Int &lt;- a.right} yield {aa}
+</code></pre>
+
+<p>works fine but not for 2.10. This is caused by a <a href="http://stackoverflow.com/questions/26646409/either-for-comprehension-different-behavior-in-2-9-and-2-10">bug</a>. To fix it, just not use the explicit type for <code>aa</code>. Like this:</p>
+
+<pre><code>val a: Either[String, Int] = Right(5)
+for {aa &lt;- a.right} yield {aa}
+</code></pre>
+
+<h5>ScalaObject</h5>
+
+<p>ScalaObject is deprecated. Use AnyRef instead.</p>
+
+<h5>Serializable</h5>
+
+<p>Scala 2.10 Serializable now extends to scala.Any. See this <a href="http://stackoverflow.com/questions/26792854/note-that-serializable-extends-any-not-anyref">post</a>.</p>
+
+<h5>groupBy ordering</h5>
+
+<p>The ordering of List.groupBy is <strong>reversed</strong> as shown in below code:</p>
+
+<pre><code>scala&gt;   val rejectionIdAndUserIdList = Seq(
+     |       ("userA", "123"),
+     |       ("userA", "456"),
+     |       ("userA", "789"),
+     |       ("userB", "aaa"),
+     |       ("userB", "bbb"),
+     |       ("userC", "ccc")
+     |     )
+rejectionIdAndUserIdList: Seq[(String, String)] = List((userA,123), 
+(userA,456), (userA,789), (userB,aaa), (userB,bbb), (userC,ccc))
+
+scala&gt; rejectionIdAndUserIdList.groupBy(_._1)
+res0: scala.collection.immutable.Map[String,Seq[(String, String)]] = 
+Map(userC -&gt; List((userC,ccc)), userB -&gt; 
+List((userB,aaa), (userB,bbb)), 
+userA -&gt; List((userA,123), (userA,456), (userA,789)))
+</code></pre>
+
+<h5>BigDecimal bug</h5>
+
+<p>There is BigDecimal <a href="https://issues.scala-lang.org/browse/SI-6699">bug</a> in 2.10 which will make <code>BigDecimal(0.8).equals(0.8) = false</code>.</p>
+
+<h5>Scala Xml Attribute ordering</h5>
+
+<p>Scala Xml change the ordering for attributes. The following code shows the difference:
+In 2.9.3</p>
+
+<pre><code>scala&gt; &lt;test&gt;xxx&lt;/test&gt; % Attribute(None, ""a"", Text(""a attribute""), Attribute(None, ""b"", Text(""b attribute""), Null))
+res2: scala.xml.Elem = &lt;test a=""a attribute"" b=""b attribute""&gt;xxx&lt;/test&gt;
+</code></pre>
+
+<p>In 2.10.4</p>
+
+<pre><code>scala&gt; &lt;test&gt;xxx&lt;/test&gt; % Attribute(None, ""a"", Text(""a attribute""), Attribute(None, ""b"", Text(""b attribute""), Null))
+res2: scala.xml.Elem = &lt;test b=""b attribute"" a=""a attribute""&gt;xxx&lt;/test&gt;
+</code></pre>
+</body>
+</html>
