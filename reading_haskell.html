@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Learn your haskell for a great good</title>
+
+</head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57383440-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<body>
+<h2>Learn your haskell for a great good</h2>
+
+<p>Recently, I finished (or almost) the book <a href="http://learnyouahaskell.com/">Learn your haskell for a great good</a>. It is a very good book that explains the functional programming and specific haskell language features in a fun and clear way with lots of hands on codes. In this article, I will try to summarize what I have learnt from this book. As a Scala programmer for the last two years, I may <em>unconsciously</em> try to compare Haskell with Scala although Scala is not a <em>pure</em> functional programming language.</p>
+
+<h4>What is Haskell?</h4>
+
+<p>First off, haskell is <a href="http://en.wikipedia.org/wiki/Type_system"><em>statically typed</em></a> purely <em>functional</em> language. So what is a <em>functional</em> programming language? Here is the definition from <a href="http://en.wikipedia.org/wiki/Functional_programming">wikipedia</a>.</p>
+
+<blockquote><p>In computer science, functional programming is a programming paradigm, a style of building the structure and elements of computer programs, that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.</p></blockquote>
+
+<p>Apart of that, there are a number of chacteristics that <em>pure</em> functional programming languages share:</p>
+
+<ol>
+<li>Immutable data structures and high order functions</li>
+<li>functions are the first class memeber which means a function can takes another function as parameter and returns yet another function.</li>
+<li>functions have no side effect (I/O or memory)</li>
+</ol>
+
+
+<p>As a functional language, Haskell has all these characteristics and some other concepts that are well known to functional languages, such as pattern matching, functor, monad, tuple, list comprehension, etc.</p>
+
+<h3>Immutable data structure - List</h3>
+
+<p>List is a very common data strcture in Haskel as well as in Scala. And they share a very similar set of high order functions like ++(concating two lists), head, tail, last, reverse, take, drop, etc. And similar operations like list comprehension. Last, they share the same limitation that <em>appending</em> is always slower than a <em>prepend</em> when the size of a list is not small.</p>
+
+<h3>Haskel type system</h3>
+
+<p>Haskell is a staically typed language and it has type inference like Scala. The common Haskell types include Integer, Float, Double, Bool, Char. To define your own data type, use <code>data</code> keywords. Here is how to define a Person type.</p>
+
+<pre><code>data Person = Person { firstName :: String
+                      , lastName :: String
+                      , age :: Int
+                      }
+</code></pre>
+
+<p>With the above definition, you can create a person like <code>Person {first Name = "Joe", lastName = "Doe", age = 42}</code>.</p>
+
+<p>Haskel has <em>type variables</em> which is much like the <em>generics</em> in other programming languages but it is more powerful. An example is the <code>head</code> function of a list is <code>head :: [a] -&gt; a</code> or <code>fst</code> function <code>fst :: (a, b) -&gt; b</code>. Type parameters can be used in constructor like <code>data Maybe a = Nothing | Just a</code>. Here <code>Maybe</code> is a <em>type constructor</em>.</p>
+
+<p>Haskel has <em>type classes</em> which is an interface that defines some behaviors. It is much like <em>traits</em> in Scala in terms that you can mix in many different <em>type classes</em>. However, a <em>type class</em> is just an abstract interface. The type which is an instance of a <em>type class</em> should implement the behavior the <em>type class</em> defines. Some well known type classes are <strong>Eq</strong>, <strong>Show</strong>, <strong>Ord</strong>, etc.</p>
+
+<h3>Pattern Matching</h3>
+
+<p><em>Patten Matching</em> is used to specify some patterns to which some data should conform and to decontruct the data according to those patterns. While we use patterns to check if the values passed to our functions to are constructed in a certain way, <em>guards</em> is to check if some property of those passed values is true of false. Haskell uses <em>where</em> to store results of intermediate computations at the end of a function. Another interesting keyword <em>let</em> allow you to bind ariables anywhere.</p>
+
+<h3>Recursion</h3>
+
+<p><em>Recursion</em> is an essential part of functional programming languages. It provides concise and elgant solutions to some problems. A lot of basic functions especially when it operates on recursive data structures like List <code>Data List a = Nil | Cons a (List a)</code>. See the following <code>reverse</code> function.</p>
+
+<pre><code>reverse :: [a] -&gt; [a]
+reverse [] = []
+reverse (x:xs) = reverse xs ++ [x]
+</code></pre>
+
+<p>The following quicksort code really amazes me how Haskell can solve a problem so intutively. (may not be efficient in worst cases like reverse ordered list).</p>
+
+<pre><code>quicksort :: (Ord a) =&gt; [a] -&gt; [a]        
+quicksort [] = []
+quicksort (x:xs) =
+    let smallerOrEqual = [a | a &lt;- xs, a &lt;= x]
+        larger = [a | a &lt;- xs, a &gt; x]
+     in quicksort smallerOrEqual ++ [x] ++ quicksort larger
+</code></pre>
+
+<p>The code first gets the head of the list using pattern matching and uses list comprehension to get two sub lists: for one list, all elements are less than or equal to the head, the other list are for elements that are larger than the head. Then recursively calls the two lists and joins the results together.</p>
+
+<h3>High-Order Functions</h3>
+
+<p><em>High-Order functions</em> are functions that either take functions as parameters or return functions as return values. Every function is Haskell officially takes only one parameter. Thus a Haskell function that accepts multiple paramters are actually <em>curried</em> functions. Let's take a look of the zipwith function.</p>
+
+<pre><code> zipwith :: (a -&gt; b -&gt; c) -&gt; [a] -&gt; [b] -&gt; [c]
+ zipwith _ [] _ = []
+ zipwith _ _ [] = []
+ zipwith f (x:xs) (y:ys) = f x y : zipwith f xs ys
+</code></pre>
+
+<p>The zipwith function takes a function  <code>a-&gt; b -&gt; c</code> and two lists <code>a</code> and <code>b</code> and returns a list <code>c</code>.
+<em>Lambdas</em> are anonymous functions that we use when we need a function only once. Haskell uses <code>\</code> for Lambdas functions like the example <code>map (\x -&gt; x + 3) [1,6,3]</code> which equals <code>map (+3) [1,6,3]</code>. Fold functions( foldl, foldr, foldl1, foldr1) allows you to reduce a data structure like a list to a single value. The difference between foldl and foldr is foldl accumulates data from left while foldr accumlates data from right. The difference between foldl and foldl1 is for foldl1 you don't need to provide the initial value which is like reduce in Scala.</p>
+
+<p>The <code>$</code> function in Haskell which is also called <em>Function application</em> operator. It is right associative. So <code>sqrt $ 3 + 4 +9</code> is the same as <code>sqrt (3 + 4 + 9)</code> but looks a bit nicer. The <code>.</code> function is the <em>function composition</em> for Haskell, <code>f . g = \x -&gt; f (g x)</code>. Basically, we first apply g to x g(x) and apply the result to f. In Scala, it has a keyword <em>compose</em> for the same purpose.</p>
+
+<h3>Functor</h3>
+
+<p><em>Functor</em> is a important type class. It has the following definition.</p>
+
+<pre><code>class Functor f where 
+    fmap :: (a -&gt;b) -&gt; f a -&gt; f b
+</code></pre>
+
+<p>Basically, it says given a function that converts <code>a</code> to <code>b</code> and a container <code>f</code> with <code>a</code>, you can get a container <code>f</code> with <code>b</code> if the <code>fmap</code> is called. Many basic Haskell types are a <em>functor</em>, like List, Maybe, Either because they all support fmap function.</p>
+
+<h3>Input and Output</h3>
+
+<p>I/O inherently has <em>side effects</em>. But Haskell functions are not allowed to have side effects. Now we have both <strong>pure</strong> and <strong>inpure</strong> worlds when dealing with I/O. In Haskell, the two worlds are separated. Check below the simple example:</p>
+
+<pre><code>    main = do
+        putStrLn "Hello, what's your name?"
+        name &lt;- getLine
+        putStrLn ("Hey " ++ name)
+</code></pre>
+
+<p>Here, putStrLn and getLine are I/O functions. Note the line <code>name &lt;- getLine</code>, <code>name</code> is a normal string in the <strong>pure</strong> world. <code>getLine</code> gets something from the <strong>inpure</strong> world and put into <code>name</code>.</p>
+
+<h3>Applicative Functors</h3>
+
+<p><em>Applicative Functors</em> is another type class defined as follows:</p>
+
+<pre><code>class (Functor f) =&gt; Applicative f where
+    pure :: a -&gt; f a
+    (&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b
+</code></pre>
+
+<p>From the definition, we can see that an <em>applicative functor</em> must first be a functor. The <code>pure</code> function puts the parameter inside a context and the <code>&lt;*&gt;</code> function says you have a container with a function that converts <code>a</code> to <code>b</code> and a container with <code>a</code>, with <code>&lt;*&gt;</code> you will get a container with <code>b</code> inside of it.</p>
+
+<p>You may not be surprised that <code>Maybe</code> is an <em>applicative functor</em>. As an example, <code>pure (+) &lt;*&gt; Just 3 &lt;*&gt; Just 5</code> gives you <code>Just 8</code>. However, you may be surprised that <code>List</code> is an <em>applicative functor</em> as well in following definition:</p>
+
+<pre><code>instance Applicative [] where
+    pure x = [x]
+    fs &lt;*&gt; xs = [f x | f &lt; fs, x &lt;- xs]
+</code></pre>
+
+<h3>Monoids not Monads</h3>
+
+<p>The <em>Monoid</em> Type class is defined as follows:</p>
+
+<pre><code>class Monoid m where
+    mempty :: m
+    mappend :: m -&gt; m -&gt; m
+    mconcat :: [m] -&gt; m
+    mconcat :: foldr mappend mempty
+</code></pre>
+
+<p>The first two functions <code>mempty</code> and <code>mappend</code> are most import ones. The <code>mappend</code> in particular is a binary function that takes two values of the same type and returns another value of the same type. (Remeber something?)</p>
+
+<p>List once again is a Monoid:</p>
+
+<pre><code>instance Monoid [a] where
+    mempty = []
+    mappend = (++)
+</code></pre>
+
+<h3>Monad</h3>
+
+<p>The <em>Monad</em> Type class is defined as following:</p>
+
+<pre><code>class Monad m where
+    return :: a -&gt; ma
+    (&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b
+    ...
+</code></pre>
+
+<p>The <code>return</code> function is just <em>pure</em> in applicative functor. The <code>(&gt;&gt;=)</code> says if we have a <code>a</code> with context <code>m</code> and a conversion function <code>a -&gt; m b</code>, then we will get <code>b</code> with a context <code>m b</code>.</p>
+
+<p>Not a surprise, <code>List</code> is a Monad with the following definition:</p>
+
+<pre><code>instance Monad [] where
+    return x = [x]
+    xs &gt;&gt; = f = concat (map f xs)
+    fail _ = []
+</code></pre>
+
+<p>There are several intersting Monadic functions in Haskel.</p>
+
+<ol>
+<li><code>liftM</code> which has the definition <code>liftM:: (Monad m) =&gt; (a -&gt; b) -&gt; m a -&gt; m b</code>. An example is <code>liftM (* 3) (Just 8)</code> = <code>Just 24</code></li>
+<li><code>join</code> which has the definition <code>join :: (Monad m) =&gt; m (m a) -&gt; m a</code>. Like flatten?</li>
+<li><code>filterM</code> with the definition <code>filterM :: (Monad m) =&gt; (a -&gt; m Bool) -&gt; [a] -&gt; m [a]</code></li>
+<li><code>folderM</code> has the following definition <code>folderM :: (Monad m) =&gt; (a -&gt; b -&gt; m a) -&gt; a -&gt; [b] -&gt; m a</code></li>
+</ol>
+
+
+<p>In summary, a <code>functor</code> is something that can be mapped over. An <code>applicative functor</code> allows us to put value into some default context (<code>pure</code>) and apply normal functions between several applicative functors (<code>Just 3 (*) Just 5)</code>). An Monad is an improved applicative functor which add the ability to feed such value with context to normal functions.</p>
+</body>
+</html>
